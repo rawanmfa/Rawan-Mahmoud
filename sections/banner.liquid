@@ -1,0 +1,72 @@
+<section class="custom-banner">
+  <div class="custom-banner__nav">
+    <h1 class="store-name">{{ shop.name }}</h1>
+    <a href="/collections/all" class="cta-btn">
+      {{ section.settings.button_text }}
+    </a>
+  </div>
+
+  <div class="custom-banner__images">
+    {% if section.settings.bg_image_top != blank %}
+      <img
+            src="{{ section.settings.bg_image_top | image_url: width: 1600 }}"
+            alt="Banner Top"
+            width="70"
+            height="{{ 70 | divided_by: section.settings.bg_image_top.aspect_ratio | ceil }}"
+            loading="lazy"
+          >
+    {% endif %}
+    {% if section.settings.bg_image_bottom != blank %}
+      <img
+            src="{{ section.settings.bg_image_bottom | image_url: width: 1600 }}"
+            alt="Banner Bottom"
+            width="70"
+            height="{{ 70 | divided_by: section.settings.bg_image_bottom.aspect_ratio | ceil }}"
+            loading="lazy"
+          >
+    {% endif %}
+  </div>
+
+  <div class="custom-banner__text">
+    <h2>{{ section.settings.title }}</h2>
+  </div>
+</section>
+
+<style>
+.custom-banner { 
+  position: relative;
+  text-align: center; 
+}
+.custom-banner__nav { 
+  display: flex; 
+  justify-content: space-between; 
+  padding: 1rem; 
+}
+.custom-banner__images img { 
+  width: 100%; 
+  display: block; 
+}
+.cta-btn { 
+  padding: 0.6rem 1.2rem; 
+  background: black; 
+  color: white; 
+  transition: all 0.3s; 
+}
+.cta-btn:hover { 
+  background: #444; 
+  transform: scale(1.05); 
+}
+</style>
+
+{% schema %}
+{
+  "name": "Custom Banner",
+  "settings": [
+    { "type": "text", "id": "title", "label": "Banner Text", "default": "Welcome to our store" },
+    { "type": "text", "id": "button_text", "label": "Button Text", "default": "Shop Now" },
+    { "type": "image_picker", "id": "bg_image_top", "label": "Top Background Image" },
+    { "type": "image_picker", "id": "bg_image_bottom", "label": "Bottom Background Image" }
+  ],
+  "presets": [{ "name": "Custom Banner" }]
+}
+{% endschema %}
