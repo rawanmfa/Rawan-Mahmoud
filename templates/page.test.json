@@ -1,16 +1,83 @@
-/*I have made this template because the figma design that is provided with the test doesn't have the layout of the Dawn theme so i needed 
- a clean page to start making the test design provided.
- You can access my whole work by opnening the published live theme when it open from the top drop menu choose pages and then test
-*/
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "layout": "none",
   "sections": {
     "banner": {
-      "type": "banner"
+      "type": "banner",
+      "settings": {
+        "shop_name": "TISSO VISON",
+        "gift_text": "Find the ideal gift for your loved ones.",
+        "title": "Welcome to our store",
+        "gift_button": "CHOOSE GIFT",
+        "banner_bottom_gift_text": "The Gift Guide",
+        "banner_bottom_p_text": "Discover Joy: Your Ultimate Holiday Gift Destination. Explore our curated selection and find the perfect gifts to delight your loved ones this holiday season.",
+        "shop_button": "SHOP NOW",
+        "banner_footer": "SUSTAINABLE, ETHICALLY MADE CLOTHES IN SIZES XXS TO 6XL"
+      }
     },
     "grid": {
-      "type": "grid"
+      "type": "grid",
+      "blocks": {
+        "product_ck7RBn": {
+          "type": "product",
+          "settings": {
+            "product": "black-leather-bag"
+          }
+        },
+        "product_LYNQEG": {
+          "type": "product",
+          "settings": {
+            "product": "blue-silk-tuxedo"
+          }
+        },
+        "product_fykVMm": {
+          "type": "product",
+          "settings": {
+            "product": "chequered-red-shirt"
+          }
+        },
+        "product_LMc7Wq": {
+          "type": "product",
+          "settings": {
+            "product": "classic-leather-jacket"
+          }
+        },
+        "product_Fwb7cL": {
+          "type": "product",
+          "settings": {
+            "product": "classic-varsity-top"
+          }
+        },
+        "product_86yHmm": {
+          "type": "product",
+          "settings": {
+            "product": "dark-denim-top"
+          }
+        }
+      },
+      "block_order": [
+        "product_ck7RBn",
+        "product_LYNQEG",
+        "product_fykVMm",
+        "product_LMc7Wq",
+        "product_Fwb7cL",
+        "product_86yHmm"
+      ],
+      "settings": {
+        "heading": "Tisso vison in the wild"
+      }
     }
   },
-  "order": ["banner", "grid"]
+  "order": [
+    "banner",
+    "grid"
+  ]
 }
