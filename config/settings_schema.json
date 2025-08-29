@@ -1451,5 +1451,21 @@
         "default": "scheme-1"
       }
     ]
-  }
+  },
+  /*Here i added the jost font that i will need in the task and used it in none.liquid layout*/
+  {
+  "name": "t:settings_schema.test.name",
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:settings_schema.test.settings.header__1.content"
+    },
+    {
+      "type": "font_picker",
+      "id": "type_test_font",
+      "default": "jost_n4",
+      "label": "t:settings_schema.test.settings.type_test_font.label"
+    }
+  ]
+}
 ]

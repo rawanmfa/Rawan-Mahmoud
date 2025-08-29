@@ -1,113 +1,59 @@
-<section class="custom-product-grid">
-  <div class="grid-container">
-    {% for block in section.blocks %}
-      {% assign product = all_products[block.settings.product] %}
-      {% if product %}
-        <div class="grid-item">
-          <img
-            src="{{ product.featured_image | image_url: width: 400 }}"
-            alt="{{ product.title | escape }}"
-            width="70"
-            height="{{ 70 | divided_by: product.featured_image.aspect_ratio | ceil }}"
-            loading="lazy"
-          >
-          <button class="plus-btn" data-handle="{{ product.handle }}">+</button>
-        </div>
-      {% endif %}
-    {% endfor %}
-  </div>
+{{ 'section-grid.css' | asset_url | stylesheet_tag }}
 
-  <!-- Popup modal -->
-  <div id="productModal" class="modal hidden">
-    <div class="modal-content">
-      <span id="closeModal">&times;</span>
-      <div id="modalContent"></div>
-    </div>
+<section class="grid">
+  <h4 class="grid__header">{{ section.settings.heading }}</h4>
+  <div class="grid__product">
+    {% if section.blocks.size > 0 %}
+      {% for block in section.blocks %}
+        {% assign product = block.settings.product %}
+        <div class="grid__product__item">
+          {% if product %}
+            <a href="{{ product.url }}">
+              <img src="{{ product.featured_image | image_url: width: 600 }}" alt="{{ product.title }}">
+              <h3>{{ product.title }}</h3>
+            </a>
+          {% else %}
+            <div class="placeholder">Select a product</div>
+          {% endif %}
+        </div>
+      {% endfor %}
+    {% else %}
+      <p class="muted">Add blocks in the customizer to populate this grid.</p>
+    {% endif %}
   </div>
 </section>
 
-<style>
-  .custom-product-grid .grid-container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1rem;
-  }
-  .grid-item {
-    position: relative;
-  }
-  .plus-btn {
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-    background: black;
-    color: white;
-    border: none;
-    padding: 0.5rem 1rem;
-    cursor: pointer;
-    font-size: 1.2rem;
-    border-radius: 50%;
-  }
-  .modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.6);
-    justify-content: center;
-    align-items: center;
-  }
-  .modal-content {
-    background: white;
-    padding: 2rem;
-    border-radius: 10px;
-    width: 400px;
-    max-width: 90%;
-  }
-  .modal.show {
-    display: flex;
-  }
-  #closeModal {
-    cursor: pointer;
-    float: right;
-    font-size: 1.5rem;
-  }
-</style>
-
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const modal = document.getElementById('productModal');
-    const modalContent = document.getElementById('modalContent');
-    const closeModal = document.getElementById('closeModal');
-
-    document.querySelectorAll('.plus-btn').forEach((btn) => {
-      btn.addEventListener('click', () => {
-        const handle = btn.getAttribute('data-handle');
-        fetch(`/products/${handle}?view=quick-view`)
-          .then((res) => res.text())
-          .then((html) => {
-            modalContent.innerHTML = html;
-            modal.classList.add('show');
-          });
-      });
-    });
-
-    closeModal.addEventListener('click', () => modal.classList.remove('show'));
-  });
-</script>
-
 {% schema %}
 {
-  "name": "Custom Product Grid",
+  "name": "Grid",
+  "settings": [{ "type": "text", "id": "heading", "label": "Heading", "default": "Tisso vison in the wild" }],
   "blocks": [
     {
       "type": "product",
       "name": "Product",
-      "settings": [{ "type": "product", "id": "product", "label": "Select product" }]
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Select product"
+        }
+      ]
     }
   ],
   "max_blocks": 6,
-  "presets": [{ "name": "Custom Product Grid" }]
+  "presets": [
+    {
+      "name": "Grid",
+      "category": "Products",
+      "blocks": [
+        { "type": "product" },
+        { "type": "product" },
+        { "type": "product" },
+        { "type": "product" },
+        { "type": "product" },
+        { "type": "product" }
+      ]
+    }
+  ]
 }
 {% endschema %}

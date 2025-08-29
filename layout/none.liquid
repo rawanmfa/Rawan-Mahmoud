@@ -1,8 +1,44 @@
+{% comment %}
+  I made this layout and used it in the test template because the theme.liquid layout doesn't give me the figma layout of the test
+{% endcomment %}
 <!doctype html>
-<html lang="en">
+<html lang="{{ request.locale.iso_code }}">
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="canonical" href="{{ canonical_url }}">
+    {% comment %} I couldn't find Lustria font in shopify font library so i used google fonts for Lustria font only{% endcomment %}
+    <link rel="preconnect" href="https://fonts.googleapis.com"> 
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lustria&display=swap" rel="stylesheet">
+
+    {%- if settings.favicon != blank -%}
+      <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
+    {%- endif -%}
+
+    {%- unless settings.type_test_font.system? and settings.type_extest_font.system? -%}
+      <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
+    {%- endunless -%}
+
     <title>{{ page_title }}</title>
+
+    <style>
+          {{ settings.type_test_font | font_face }}
+          {{ settings.type_extest_font | font_face }}
+
+          body {
+            font-family: {{ settings.type_test_font.family }}, sans-serif;
+            padding: 0;
+            margin: 0;
+          }
+
+          h4 {
+            font-family: "Lustria", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+          }
+    </style>
+
     {{ content_for_header }}
   </head>
   <body>

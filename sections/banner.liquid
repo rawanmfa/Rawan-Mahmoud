@@ -1,72 +1,95 @@
-<section class="custom-banner">
-  <div class="custom-banner__nav">
-    <h1 class="store-name">{{ shop.name }}</h1>
-    <a href="/collections/all" class="cta-btn">
-      {{ section.settings.button_text }}
+{{ 'section-banner.css' | asset_url | stylesheet_tag }}
+
+{% comment %} missing the right link to choose gift  {% endcomment %}
+<section class="banner">
+  <div class="banner__nav">
+    <h1>{{ section.settings.shop_name }}</h1>
+    <h3>{{ section.settings.gift_text }}</h3>
+    <a href="/collections/all"
+      ><span>{{ section.settings.gift_button }}</span>
+      <svg
+        class="banner__arrow"
+        viewBox="0 -6.5 36 36"
+        version="1.1"
+        xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink"
+        fill="currentColor"
+      >
+        <g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>right-arrow</title> <desc>Created with Sketch.</desc> <g id="icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"> <g id="ui-gambling-website-lined-icnos-casinoshunter" transform="translate(-212.000000, -159.000000)" fill="currentColor" fill-rule="nonzero"> <g id="square-filled" transform="translate(50.000000, 120.000000)"> <path d="M187.108012,39.2902857 L197.649804,49.7417043 L197.708994,49.7959169 C197.889141,49.9745543 197.986143,50.2044182 198,50.4382227 L198,50.5617773 C197.986143,50.7955818 197.889141,51.0254457 197.708994,51.2040831 L197.6571,51.2479803 L187.108012,61.7097143 C186.717694,62.0967619 186.084865,62.0967619 185.694547,61.7097143 C185.30423,61.3226668 185.30423,60.6951387 185.694547,60.3080911 L194.702666,51.3738496 L162.99947,51.3746291 C162.447478,51.3746291 162,50.9308997 162,50.3835318 C162,49.8361639 162.447478,49.3924345 162.99947,49.3924345 L194.46779,49.3916551 L185.694547,40.6919089 C185.30423,40.3048613 185.30423,39.6773332 185.694547,39.2902857 C186.084865,38.9032381 186.717694,38.9032381 187.108012,39.2902857 Z M197.115357,50.382693 L186.401279,61.0089027 L197.002151,50.5002046 L197.002252,50.4963719 L196.943142,50.442585 L196.882737,50.382693 L197.115357,50.382693 Z" id="right-arrow"> </path> </g> </g> </g> </g>
+      </svg>
     </a>
   </div>
 
-  <div class="custom-banner__images">
-    {% if section.settings.bg_image_top != blank %}
-      <img
-            src="{{ section.settings.bg_image_top | image_url: width: 1600 }}"
-            alt="Banner Top"
-            width="70"
-            height="{{ 70 | divided_by: section.settings.bg_image_top.aspect_ratio | ceil }}"
-            loading="lazy"
-          >
-    {% endif %}
-    {% if section.settings.bg_image_bottom != blank %}
-      <img
-            src="{{ section.settings.bg_image_bottom | image_url: width: 1600 }}"
-            alt="Banner Bottom"
-            width="70"
-            height="{{ 70 | divided_by: section.settings.bg_image_bottom.aspect_ratio | ceil }}"
-            loading="lazy"
-          >
-    {% endif %}
+  <div class="banner__top__image"></div>
+
+  <div class="banner_bottom">
+    <div class="banner__bottom__text">
+      <h3>{{ section.settings.banner_bottom_gift_text }}</h3>
+      <p>{{ section.settings.banner_bottom_p_text }}</p>
+      <a href="/collections/all">
+        <span>{{ section.settings.shop_button }}</span>
+        <svg
+          class="banner__arrow"
+          viewBox="0 -6.5 36 36"
+          version="1.1"
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          fill="currentColor"
+        >
+          <g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>right-arrow</title> <desc>Created with Sketch.</desc> <g id="icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"> <g id="ui-gambling-website-lined-icnos-casinoshunter" transform="translate(-212.000000, -159.000000)" fill="currentColor" fill-rule="nonzero"> <g id="square-filled" transform="translate(50.000000, 120.000000)"> <path d="M187.108012,39.2902857 L197.649804,49.7417043 L197.708994,49.7959169 C197.889141,49.9745543 197.986143,50.2044182 198,50.4382227 L198,50.5617773 C197.986143,50.7955818 197.889141,51.0254457 197.708994,51.2040831 L197.6571,51.2479803 L187.108012,61.7097143 C186.717694,62.0967619 186.084865,62.0967619 185.694547,61.7097143 C185.30423,61.3226668 185.30423,60.6951387 185.694547,60.3080911 L194.702666,51.3738496 L162.99947,51.3746291 C162.447478,51.3746291 162,50.9308997 162,50.3835318 C162,49.8361639 162.447478,49.3924345 162.99947,49.3924345 L194.46779,49.3916551 L185.694547,40.6919089 C185.30423,40.3048613 185.30423,39.6773332 185.694547,39.2902857 C186.084865,38.9032381 186.717694,38.9032381 187.108012,39.2902857 Z M197.115357,50.382693 L186.401279,61.0089027 L197.002151,50.5002046 L197.002252,50.4963719 L196.943142,50.442585 L196.882737,50.382693 L197.115357,50.382693 Z" id="right-arrow"> </path> </g> </g> </g> </g>
+        </svg>
+      </a>
+    </div>
+    <div class="banner__bottom__image"></div>
   </div>
 
-  <div class="custom-banner__text">
-    <h2>{{ section.settings.title }}</h2>
-  </div>
+  <div class="banner__footer">{{ section.settings.banner_footer }}</div>
 </section>
 
 <style>
-.custom-banner { 
-  position: relative;
-  text-align: center; 
-}
-.custom-banner__nav { 
-  display: flex; 
-  justify-content: space-between; 
-  padding: 1rem; 
-}
-.custom-banner__images img { 
-  width: 100%; 
-  display: block; 
-}
-.cta-btn { 
-  padding: 0.6rem 1.2rem; 
-  background: black; 
-  color: white; 
-  transition: all 0.3s; 
-}
-.cta-btn:hover { 
-  background: #444; 
-  transform: scale(1.05); 
-}
+  {% comment %} so i added these classes here in a style tag because the asset_url doesn't work in a
+   file that it's extension isn't .liquid {% endcomment %}
+  .banner__top__image{
+    width: 100%;
+    height:24.375rem;
+    background-image: url({{ "topFrame.png" | asset_url }});
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-size: contain;
+  }
+  .banner__bottom__image{
+    width: 60%;
+    height:25.125rem;
+    background-image: url({{ "bottomFrame.png" | asset_url }});
+    background-repeat: no-repeat;
+    background-position: bottom right;
+    background-size: contain;
+  }
 </style>
 
 {% schema %}
 {
-  "name": "Custom Banner",
+  "name": "Banner",
   "settings": [
+    { "type": "text", "id": "shop_name", "label": "Banner Text", "default": "TISSO VISON" },
+    {
+      "type": "text",
+      "id": "gift_text",
+      "label": "Banner Text",
+      "default": "Find the ideal gift for your loved ones."
+    },
     { "type": "text", "id": "title", "label": "Banner Text", "default": "Welcome to our store" },
-    { "type": "text", "id": "button_text", "label": "Button Text", "default": "Shop Now" },
-    { "type": "image_picker", "id": "bg_image_top", "label": "Top Background Image" },
-    { "type": "image_picker", "id": "bg_image_bottom", "label": "Bottom Background Image" }
+    { "type": "text", "id": "gift_button", "label": "Button Text", "default": "CHOOSE GIFT" },
+    { "type": "text", "id": "banner_bottom_gift_text", "label": "Banner Text", "default": "The Gift Guide" },
+    {
+      "type": "text",
+      "id": "banner_bottom_p_text",
+      "label": "Banner Text",
+      "default": "Discover Joy: Your Ultimate Holiday Gift Destination. Explore our curated selection and find the perfect gifts to delight your loved ones this holiday season."
+    },
+    { "type": "text", "id": "shop_button", "label": "Button Text", "default": "SHOP NOW" },
+    { "type": "text", "id": "banner_footer", "label": "Banner Text", "default": "SUSTAINABLE, ETHICALLY MADE CLOTHES IN SIZES XXS TO 6XL" }
   ],
-  "presets": [{ "name": "Custom Banner" }]
+  "presets": [{ "name": "Banner" }]
 }
 {% endschema %}
